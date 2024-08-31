@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="2" align="center">
+                Incripciones
+            </td>
+            <tr>
+                <td>Nombre</td>
+                <td>
+                    <input type="text" name="nombre" placeholder="Escriba su nombre">
+                </td>
+            </tr>
+            <tr>
+                <td>Genero</td>
+                    <td>
+                        <select name="genero">
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>    
+                        </select>
+                    </td>
+            </tr>
+            <tr>
+                <td>Edad</td>
+                <td>
+                    <input type="text" name="edad" placeholder="Digite su edad">
+                </td>
+            </tr>
+            <tr>
+                <td>Estado Civil</td>
+                <td>
+                    <input type="radio" value="casado" name="estado">Casado
+                    <input type="radio" value="soltero" name="estado">Soltero
+                    <input type="radio" value="union libre" name="estado">Union Libre
+                </td>
+            </tr>
+        </tr>
+            <tr>
+                <td  colspan="2">
+                    <table>
+                        <tr>
+                            <td>Gustos Musicales</td>
+                        </tr>
+                        <tr>
+                            <td>Vallenato</td><td>Salsa</td><td>Regueton</td><td>Bachata</td><td>Otro</td></tr>
+                            <tr>
+                            <td><input type="checkbox" name="Vallenato"></td>
+                            <td><input type="checkbox" name="Salsa"></td>
+                            <td><input type="checkbox" name="Regueton"></td>
+                            <td><input type="checkbox" name="Bachata"></td>
+                            <td><input type="checkbox" name="Otro"></td>
+                            </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="Center">
+                    <input type="button" value="Guardar">
+                </td>
+            </tr>
+    </table>
+</body>
+</html>
