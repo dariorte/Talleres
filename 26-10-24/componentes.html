@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda con ChatGPT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background-color: #ccc;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header div {
+            font-size: 16px;
+        }
+
+        #search-container {
+            margin: 20px 0;
+        }
+
+        buscar-elprofebarrientos {
+            display: block;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        .product {
+            border: 2px solid #000;
+            border-radius: 10px;
+            padding: 10px;
+            width: 30%;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .product button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: #f0f0f0;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div><fecha-hoy></fecha-hoy></div>
+        <div>Bienvenidos son las: <span id="hora-actual"></span></div>
+        <div><a href="#">Ir ChatGPT</a></div>
+    </header>
+
+    <div id="search-container">
+        <buscar-elprofebarrientos></buscar-elprofebarrientos>
+    </div>
+
+    <div class="product-container">
+        <div class="product">
+            <div>Nombre: xxxx</div>
+            <div>Precio: $100.000</div>
+            <button>Ir al carrito</button>
+        </div>
+        <div class="product">
+            <div>Nombre: xxxx</div>
+            <div>Precio: $100.000</div>
+            <button>Ir al carrito</button>
+        </div>
+        <div class="product">
+            <div>Nombre: xxxx</div>
+            <div>Precio: $100.000</div>
+            <button>Ir al carrito</button>
+        </div>
+    </div>
+
+    <footer>
+        <titulos-elprofebarrientos></titulos-elprofebarrientos>
+    </footer>
+
+    <script>
+        class BuscarElprofebarrientos extends HTMLElement {
+            constructor() {
+                super();
+                const shadow = this.attachShadow({ mode: "open" });
+                const buscarcaja = document.createElement("input");
+                buscarcaja.type = 'text';
+                buscarcaja.placeholder = 'Buscar con ChatGPT';
+                buscarcaja.classList.add("buscarcaja");
+
+                const style = document.createElement("style");
+                style.textContent = `
+                    .buscarcaja {
+                        width: 100%;
+                        max-width: 800px;
+                        padding: 10px;
+                        border: 2px solid #007bff;
+                        border-radius: 20px;
+                        outline: none;
+                        transition: border-color 0.3s;
+                    }
+                    .buscarcaja:focus {
+                        border-color: #CD5C5C;
+                    }
+                `;
+                shadow.appendChild(style);
+                shadow.appendChild(buscarcaja);
+            }
+        }
+
+        class FechaHoy extends HTMLElement {
+            constructor() {
+                super();
+                const shadow = this.attachShadow({ mode: 'open' });
+                const div = document.createElement('div');
+                div.textContent = this.fecha();
+                shadow.appendChild(div);
+            }
+
+            fecha() {
+                const today = new Date();
+                const dia = String(today.getDate()).padStart(2, '0');
+                const mes = String(today.getMonth() + 1).padStart(2, '0');
+                const ano = today.getFullYear();
+                return `${dia}-${mes}-${ano}`;
+            }
+        }
+
+        class TitulosElprofebarrientos extends HTMLElement {
+            constructor() {
+                super();
+            }
+
+            connectedCallback() {
+                let shadowRoot = this.attachShadow({ mode: 'open' });
+                shadowRoot.innerHTML = `
+                <style>
+                    div {
+                        background-color: green;
+                        border-radius: 8px;
+                        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+                        overflow: hidden;
+                        width: 80%; /* Ajuste al ancho de la pantalla */
+                        max-width: 1200px;
+                        font-size: 1.0em;
+                        color: #ffffff;
+                        margin: 0 auto;
+                        text-align: center;
+                        font-weight: bold;
+                        font-family: 'Arial', sans-serif;
+                        padding: 10px;
+                    }
+                </style>
+                <div>Derechos reservados El profe barrientos</div>
+                `;
+            }
+        }
+
+        customElements.define("buscar-elprofebarrientos", BuscarElprofebarrientos);
+        customElements.define("fecha-hoy", FechaHoy);
+        customElements.define("titulos-elprofebarrientos", TitulosElprofebarrientos);
+
+        // Mostrar la hora actual en el header
+        function mostrarHora() {
+            const now = new Date();
+            const hora = String(now.getHours()).padStart(2, '0');
+            const minutos = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById("hora-actual").textContent = `${hora}:${minutos}`;
+        }
+        mostrarHora();
+        setInterval(mostrarHora, 60000); // Actualiza cada minuto
+    </script>
+
+</body>
+</html>
