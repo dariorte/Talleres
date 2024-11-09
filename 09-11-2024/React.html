@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> React</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center min-vh-100">
+
+    <div id="root" class="container bg-white p-5 rounded-4 shadow-lg"></div>
+
+    <script>
+        const { useState } = React;
+
+        function App() {
+            return React.createElement(
+                'div',
+                { className: 'text-center' },
+                React.createElement('h2', { className: 'mb-5 text-primary' }, 'Ejemplos de Reactividad con React'),
+                React.createElement(CounterExample, null),
+                React.createElement(UpperCaseInputExample, null),
+                React.createElement(BackgroundColorToggleExample, null)
+            );
+        }
+
+        // Ejemplo 1: Contador
+        function CounterExample() {
+            const [count, setCount] = useState(0);
+
+            const increment = () => {
+                setCount(count + 1);
+            };
+
+            return React.createElement(
+                'div',
+                { className: 'mb-4 p-3 bg-light border rounded' },
+                React.createElement('h3', { className: 'text-secondary' }, 'Ejemplo 1: Contador'),
+                React.createElement('button', { className: 'btn btn-primary me-3', onClick: increment }, 'Incrementar'),
+                React.createElement('span', { className: 'fs-4 fw-bold' }, count)
+            );
+        }
+
+        // Ejemplo 2: Convertir texto a mayúsculas en tiempo real
+        function UpperCaseInputExample() {
+            const [text, setText] = useState("");
+
+            const handleChange = (event) => {
+                setText(event.target.value.toUpperCase());
+            };
+
+            return React.createElement(
+                'div',
+                { className: 'mb-4 p-3 bg-light border rounded' },
+                React.createElement('h3', { className: 'text-secondary' }, 'Ejemplo 2: Entrada en Mayúsculas'),
+                React.createElement(
+                    'input',
+                    {
+                        type: 'text',
+                        className: 'form-control text-center mt-3',
+                        placeholder: 'Escribe algo...',
+                        value: text,
+                        onChange: handleChange
+                    }
+                )
+            );
+        }
+
+        // Ejemplo 3: Cambiar color de fondo de un cuadro de texto
+        function BackgroundColorToggleExample() {
+            const [isColored, setIsColored] = useState(false);
+
+            const toggleBackgroundColor = () => {
+                setIsColored(!isColored);
+            };
+
+            return React.createElement(
+                'div',
+                { className: 'mb-4 p-3 bg-light border rounded' },
+                React.createElement('h3', { className: 'text-secondary' }, 'Ejemplo 3: Cambiar Color de Fondo'),
+                React.createElement(
+                    'button',
+                    {
+                        className: 'btn btn-secondary mb-3',
+                        onClick: toggleBackgroundColor
+                    },
+                    'Cambiar Color de Fondo'
+                ),
+                React.createElement(
+                    'div',
+                    {
+                        className: 'p-3 rounded',
+                        style: {
+                            backgroundColor: isColored ? '#ffeb3b' : '#f8f9fa',
+                            transition: 'background-color 0.3s',
+                        }
+                    },
+                    'Este es un cuadro de texto con color de fondo dinámico.'
+                )
+            );
+        }
+
+        ReactDOM.render(React.createElement(App), document.getElementById('root'));
+    </script>
+</body>
+</html>
